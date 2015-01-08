@@ -1,9 +1,11 @@
 # setting this option is a indication to plot2.R and plot3.R
 # that they should not generate the plots. Sourcing these
 # files makes the functions plot3 and plot3 available.
-options('sourced'=TRUE)
 
-source('data_prep.R') # loads d, the data set
+d <- read.csv('household_power_consumption_20070201-2007022.txt', 
+              stringsAsFactors=FALSE)
+d <- within(d, datetime <- as.POSIXct(datetime))
+options('mk.plot'=FALSE)
 source('plot2.R')
 source('plot3.R')
 

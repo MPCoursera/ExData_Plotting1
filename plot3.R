@@ -12,11 +12,13 @@ plot3 <- function(d) {
 }
 
 mk.plot <- function() {
-    source('data_prep.R') # loads d, the data set 
+    d <- read.csv('household_power_consumption_20070201-2007022.txt', 
+                  stringsAsFactors=FALSE)
+    d <- within(d, datetime <- as.POSIXct(datetime))
     png('plot3.png', height=480, width=480)
     plot3(d)
     dev.off()
 }
 
-if (!getOption('sourced', FALSE)) 
+if (getOption('mk.plot', TRUE)) 
     mk.plot()
